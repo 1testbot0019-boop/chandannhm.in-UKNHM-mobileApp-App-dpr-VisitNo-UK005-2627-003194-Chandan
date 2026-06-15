@@ -4,207 +4,171 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>LFT Report – Santosh Singh</title>
-  <link rel="stylesheet" href="style.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: #f0f4f8;
+      color: #1c2833;
+      min-height: 100vh;
+    }
+
+    header {
+      background: #1a5276;
+      color: #fff;
+      padding: 18px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .lab-info h1 { font-size: 1.1rem; font-weight: 700; }
+    .lab-info p  { font-size: 0.75rem; opacity: 0.7; margin-top: 2px; }
+
+    .patient-meta {
+      font-size: 0.78rem;
+      text-align: right;
+      opacity: 0.85;
+      line-height: 1.7;
+    }
+
+    .download-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: #17a589;
+      color: #fff;
+      text-decoration: none;
+      padding: 10px 22px;
+      border-radius: 6px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: background 0.2s;
+      white-space: nowrap;
+    }
+    .download-btn:hover { background: #148f77; }
+
+    .toolbar {
+      max-width: 1000px;
+      margin: 24px auto 0;
+      padding: 0 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .report-title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: #1a5276;
+    }
+    .report-title span {
+      font-weight: 400;
+      color: #6c7a89;
+      font-size: 0.85rem;
+      margin-left: 8px;
+    }
+
+    .pdf-container {
+      max-width: 1000px;
+      margin: 16px auto 32px;
+      padding: 0 16px;
+    }
+
+    iframe {
+      width: 100%;
+      height: 85vh;
+      border: none;
+      border-radius: 10px;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+      background: #fff;
+      display: block;
+    }
+
+    .fallback {
+      display: none;
+      background: #fff;
+      border: 1px solid #dde3ec;
+      border-radius: 10px;
+      padding: 40px;
+      text-align: center;
+      color: #6c7a89;
+    }
+
+    .fallback p { margin-bottom: 16px; font-size: 0.95rem; }
+
+    footer {
+      background: #1a5276;
+      color: rgba(255,255,255,0.7);
+      text-align: center;
+      padding: 14px;
+      font-size: 0.75rem;
+    }
+
+    @media (max-width: 600px) {
+      header { flex-direction: column; align-items: flex-start; }
+      .patient-meta { text-align: left; }
+      iframe { height: 70vh; }
+    }
+  </style>
 </head>
 <body>
 
   <header>
-    <div class="header-inner">
-      <div class="lab-brand">
-        <div class="lab-logo">🏥</div>
-        <div>
-          <div class="lab-name">Chandan Diagnostic Centre</div>
-          <div class="lab-addr">1st Floor, 56, New Road, MKP Chowk, Dehradun</div>
-        </div>
-      </div>
-      <div class="nhm-badge">
-        <span class="nhm-dot"></span>
-        निःशुल्क जाँच योजना — NHM Uttarakhand
-      </div>
+    <div class="lab-info">
+      <h1>🏥 Chandan Diagnostic Centre — Dehradun</h1>
+      <p>1st Floor, 56, New Road, MKP Chowk, Dehradun | NHM Uttarakhand</p>
+    </div>
+    <div class="patient-meta">
+      <strong>SANTOSH SINGH</strong> | 32Y / Male<br/>
+      Visit ID: UK005-2627-003194<br/>
+      Reported: 13 Jun 2026
     </div>
   </header>
 
-  <main>
-    <section class="patient-card">
-      <div class="patient-grid">
-        <div class="patient-field">
-          <span class="field-label">Patient Name</span>
-          <span class="field-value name">SANTOSH SINGH</span>
-        </div>
-        <div class="patient-field">
-          <span class="field-label">Age / Gender</span>
-          <span class="field-value">32 Years / Male</span>
-        </div>
-        <div class="patient-field">
-          <span class="field-label">UHID / MR No.</span>
-          <span class="field-value mono">UKNH.0004114589</span>
-        </div>
-        <div class="patient-field">
-          <span class="field-label">Visit ID</span>
-          <span class="field-value mono">UK005-2627-003194</span>
-        </div>
-        <div class="patient-field">
-          <span class="field-label">Ref. Doctor</span>
-          <span class="field-value">Dr. Mukesh Sundrial</span>
-        </div>
-        <div class="patient-field">
-          <span class="field-label">Contract By</span>
-          <span class="field-value">SDH Premnagar</span>
-        </div>
-        <div class="patient-field">
-          <span class="field-label">Reported On</span>
-          <span class="field-value">13 Jun 2026 — 18:37</span>
-        </div>
-        <div class="patient-field">
-          <span class="field-label">Status</span>
-          <span class="field-value status-badge">✅ Final Report</span>
-        </div>
-      </div>
-    </section>
+  <div class="toolbar">
+    <div class="report-title">
+      Liver Function Test (LFT)
+      <span>Serum — Final Report</span>
+    </div>
+    <a class="download-btn" href="report.pdf" download="LFT_Santosh_Singh_13Jun2026.pdf">
+      ⬇ Download Report PDF
+    </a>
+  </div>
 
-    <section class="report-section">
-      <div class="section-heading">
-        <span class="dept-tag">Department of Biochemistry</span>
-        <h2>Liver Function Test (LFT) — Serum</h2>
-      </div>
+  <div class="pdf-container">
+    <iframe
+      src="report.pdf"
+      title="LFT Report – Santosh Singh"
+      id="pdf-frame"
+    ></iframe>
 
-      <div class="table-wrap">
-        <table>
-          <thead>
-            <tr>
-              <th>Test Name</th>
-              <th>Result</th>
-              <th>Unit</th>
-              <th>Reference Range</th>
-              <th>Status</th>
-              <th>Method</th>
-            </tr>
-          </thead>
-          <tbody>
-
-            <tr>
-              <td class="test-name">Bilirubin (Total)</td>
-              <td class="result normal">1.51</td>
-              <td>mg/dL</td>
-              <td>0 – 2.0</td>
-              <td><span class="tag normal">Normal</span></td>
-              <td class="method">DIAZO</td>
-            </tr>
-
-            <tr>
-              <td class="test-name">Bilirubin (Direct)</td>
-              <td class="result normal">0.21</td>
-              <td>mg/dL</td>
-              <td>&lt; 0.30</td>
-              <td><span class="tag normal">Normal</span></td>
-              <td class="method">DIAZO</td>
-            </tr>
-
-            <tr>
-              <td class="test-name">Bilirubin (Indirect)</td>
-              <td class="result normal">0.81</td>
-              <td>mg/dL</td>
-              <td>&lt; 1.8</td>
-              <td><span class="tag normal">Normal</span></td>
-              <td class="method">CALCULATED</td>
-            </tr>
-
-            <tr>
-              <td class="test-name">SGOT / AST <span class="test-sub">(Aspartate Aminotransferase)</span></td>
-              <td class="result normal">24.70</td>
-              <td>U/L</td>
-              <td>&lt; 35</td>
-              <td><span class="tag normal">Normal</span></td>
-              <td class="method">IFCC Without P5P</td>
-            </tr>
-
-            <tr>
-              <td class="test-name">SGPT / ALT <span class="test-sub">(Alanine Aminotransferase)</span></td>
-              <td class="result normal">32.09</td>
-              <td>U/L</td>
-              <td>&lt; 45</td>
-              <td><span class="tag normal">Normal</span></td>
-              <td class="method">IFCC Without P5P</td>
-            </tr>
-
-            <tr>
-              <td class="test-name">Alkaline Phosphatase (Total)</td>
-              <td class="result normal">109.33</td>
-              <td>U/L</td>
-              <td>53 – 128</td>
-              <td><span class="tag normal">Normal</span></td>
-              <td class="method">PNP AMP</td>
-            </tr>
-
-            <tr>
-              <td class="test-name">Protein (Total)</td>
-              <td class="result normal">6.84</td>
-              <td>g/dL</td>
-              <td>6.2 – 8.0</td>
-              <td><span class="tag normal">Normal</span></td>
-              <td class="method">BIURET</td>
-            </tr>
-
-            <tr>
-              <td class="test-name">Albumin</td>
-              <td class="result normal">3.82</td>
-              <td>g/dL</td>
-              <td>3.4 – 5.4</td>
-              <td><span class="tag normal">Normal</span></td>
-              <td class="method">B.C.G.</td>
-            </tr>
-
-            <tr>
-              <td class="test-name">Globulin</td>
-              <td class="result normal">3.02</td>
-              <td>gm/dL</td>
-              <td>1.8 – 3.6</td>
-              <td><span class="tag normal">Normal</span></td>
-              <td class="method">CALCULATED</td>
-            </tr>
-
-            <tr>
-              <td class="test-name">A:G Ratio</td>
-              <td class="result normal">1.26</td>
-              <td>—</td>
-              <td>1.1 – 2.0</td>
-              <td><span class="tag normal">Normal</span></td>
-              <td class="method">CALCULATED</td>
-            </tr>
-
-          </tbody>
-        </table>
-      </div>
-
-      <div class="summary-bar">
-        <div class="summary-item">
-          <span class="s-num all-normal">10 / 10</span>
-          <span class="s-label">Parameters Normal</span>
-        </div>
-        <div class="summary-item">
-          <span class="s-num">0</span>
-          <span class="s-label">Abnormal</span>
-        </div>
-        <div class="summary-item">
-          <span class="s-num">0</span>
-          <span class="s-label">Critical</span>
-        </div>
-      </div>
-    </section>
-
-    <section class="interpretation">
-      <h3>📋 Interpretation Summary</h3>
-      <p>All liver function parameters for <strong>Santosh Singh</strong> are within normal reference ranges. Bilirubin levels (total, direct, indirect) are well within limits, indicating no active jaundice or haemolysis. Liver enzymes AST and ALT are normal, suggesting no hepatocellular damage. Alkaline phosphatase is within range. Protein, albumin, globulin and A:G ratio are all normal, reflecting adequate synthetic function of the liver.</p>
-      <p class="disclaimer">⚠️ This report is for informational display only. Please consult your treating physician for clinical interpretation and advice.</p>
-    </section>
-  </main>
+    <!-- Shown only if iframe fails (very old browsers) -->
+    <div class="fallback" id="fallback">
+      <p>Your browser cannot display the PDF inline.</p>
+      <a class="download-btn" href="report.pdf" download="LFT_Santosh_Singh_13Jun2026.pdf">
+        ⬇ Download PDF Instead
+      </a>
+    </div>
+  </div>
 
   <footer>
-    <div>SIN No: 70084286 &nbsp;|&nbsp; CIN: U85110DL2003PLC308206</div>
-    <div>Signed by: <strong>Dr. Ritu Kalia</strong> — Dept. of Biochemistry</div>
-    <div class="footer-note">Generated via NHM Uttarakhand — निःशुल्क जाँच योजना</div>
+    SIN No: 70084286 &nbsp;|&nbsp; Signed by Dr. Ritu Kalia &nbsp;|&nbsp; निःशुल्क जाँच योजना — NHM Uttarakhand
   </footer>
+
+  <script>
+    // If iframe fails to load PDF, show fallback download button
+    const frame = document.getElementById('pdf-frame');
+    frame.onerror = function() {
+      frame.style.display = 'none';
+      document.getElementById('fallback').style.display = 'block';
+    };
+  </script>
 
 </body>
 </html>
